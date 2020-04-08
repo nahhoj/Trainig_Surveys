@@ -33,6 +33,7 @@ namespace Surveys.Core
             if (!string.IsNullOrWhiteSpace(FavoriteTeam))
             {
                 FavoriteTeamLabel.Text = FavoriteTeam;
+                FavoriteTeamLabel.TextColor = (Color)new TeamColorConverter().Convert(FavoriteTeam,null,null,null);
             }
         }
 

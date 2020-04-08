@@ -14,18 +14,10 @@ namespace Surveys.Core
     {
         public SurveysView()
         {
-            InitializeComponent();
-
-            MessagingCenter.Subscribe<ContentPage, Survey>(this, Messages.NewSurveyComplete, (sender, args) => {
-                Surveyspanel.Children.Add(new Label()
-                {
-                    Text = args.ToString()
-                });
-            });
-            
+            InitializeComponent();           
         }
 
-        private async void addSurveysButton_Clicked(object sender,EventArgs e)
+        private async void AddSurveysButton_Clicked(object sender,EventArgs e)
         {
             await Navigation.PushAsync(new SurveyDetailsView());
         }

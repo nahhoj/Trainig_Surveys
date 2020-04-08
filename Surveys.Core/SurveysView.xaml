@@ -3,17 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:core="clr-namespace:Surveys.Core"
              mc:Ignorable="d"
              x:Class="Surveys.Core.SurveysView"
              Title="Encuentas">
-    <ContentPage.Content>        
-        <Grid Margin="10">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <core:Data x:Key="data" />
+            <core:TeamColorConverter x:Key="teamColorConverter" />
+            <DataTemplate x:Key="SurveyDataTemplete">
+                <ViewCell>
+                    <StackLayout>
+                        <Label Text="{Binding Name}" FontSize="24" />
+                        <Label Text="{Binding Birthdate,StringFormat='{}{0:dd/MM/yyy}'}" />
+                        <Label Text="{Binding FavoriteTeam}"
+                               TextColor="{Binding FavoriteTeam ,Converter={StaticResource teamColorConverter}}" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid Margin="10" BindingContext="{Binding Source={StaticResource data}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Button Text="+" Clicked="addSurveysButton_Clicked" />
-            <StackLayout Grid.Row="1" x:Name="Surveyspanel" />
-        </Grid>        
+            <Button Text="+" Clicked="AddSurveysButton_Clicked" />
+            <ListView Grid.Row="1" ItemsSource="{Binding Surveys}"
+                      SelectedItem="{Binding SelectedSurvey,Mode=TwoWay}" 
+                      ItemTemplate="{StaticResource SurveyDataTemplete}"
+                      HasUnevenRows="True"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
