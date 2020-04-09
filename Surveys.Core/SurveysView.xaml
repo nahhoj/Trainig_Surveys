@@ -29,7 +29,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Button Text="+" Clicked="AddSurveysButton_Clicked" />
+            <Button Text="+" Command="{Binding NewSurveyCommand}"/>
             <ListView Grid.Row="1" ItemsSource="{Binding Surveys}"
                       SelectedItem="{Binding SelectedSurvey,Mode=TwoWay}" 
                       ItemTemplate="{StaticResource SurveyDataTemplete}"

@@ -7,5 +7,6 @@ namespace Surveys.Core
     class Messages
     {
         public const string NewSurveyComplete = "Nueva encuenta completada";
+        public const string NewSurvey = "Nueva encuesta";
     }
 }

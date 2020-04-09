@@ -14,12 +14,11 @@ namespace Surveys.Core
     {
         public SurveysView()
         {
-            InitializeComponent();           
-        }
-
-        private async void AddSurveysButton_Clicked(object sender,EventArgs e)
-        {
-            await Navigation.PushAsync(new SurveyDetailsView());
+            InitializeComponent();
+            MessagingCenter.Subscribe<Data>(this, Messages.NewSurvey, async (sender) =>
+              {
+                  await Navigation.PushAsync(new SurveyDetailsView());
+              });
         }
     }
 }
