@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Surveys.Core.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -7,15 +8,15 @@ using Xamarin.Forms;
 
 namespace Surveys.Core
 {
-    class Data:NotificationObject
+    class SurveysViewModel:NotificationObject
     {
         public ICommand NewSurveyCommand { get; set; }
 
-        public Data()
+        public SurveysViewModel()
         {
             NewSurveyCommand = new Command(NewSurveyCommandExecute);
             Surveys = new ObservableCollection<Survey>();
-            MessagingCenter.Subscribe<ContentPage, Survey>(this, Messages.NewSurveyComplete, (sender, args) =>
+            MessagingCenter.Subscribe<SurveyDetailsViewModel, Survey>(this, Messages.NewSurveyComplete, (sender, args) =>
             {
                 Surveys.Add(args);
             });
@@ -40,7 +41,6 @@ namespace Surveys.Core
                     return;
                 surveys = value;
                 OnPropertyChanged();
-
             }
         }
 

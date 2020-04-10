@@ -9,7 +9,7 @@
              Title="Encuentas">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <core:Data x:Key="data" />
+            <core:SurveysViewModel x:Key="SurveysViewModel" />
             <core:TeamColorConverter x:Key="teamColorConverter" />
             <DataTemplate x:Key="SurveyDataTemplete">
                 <ViewCell>
@@ -24,7 +24,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid Margin="10" BindingContext="{Binding Source={StaticResource data}}">
+        <Grid Margin="10" BindingContext="{Binding Source={StaticResource SurveysViewModel}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />
