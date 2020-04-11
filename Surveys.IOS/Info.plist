@@ -40,5 +40,7 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.co.johan.xamarin</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Fill in a reason why your app needs access to location.</string>
 </dict>
 </plist>

@@ -22,7 +22,7 @@
                 <Label Text="Nombre" />
                 <Entry Text="{Binding Name,Mode=TwoWay}" />
                 <Label Text="Fecha nacimiento" />
-                <DatePicker Date="{Binding  Birthday,Mode=TwoWay}" />
+                <DatePicker Date="{Binding  Birthdate,Mode=TwoWay}" />
                 <Label Text="Equipo favorito" />
                 <Grid>
                     <Grid.ColumnDefinitions>

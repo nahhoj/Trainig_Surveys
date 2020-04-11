@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace Surveys.Core.ViewModels
 {
@@ -102,7 +103,7 @@ namespace Surveys.Core.ViewModels
             MessagingCenter.Send(this,Messages.SelectTeam,Teams);
         }
 
-        public void EndSuveysCommandExecute()
+        public async void EndSuveysCommandExecute()
         {
             var newSurvey = new Survey()
             {
@@ -110,6 +111,23 @@ namespace Surveys.Core.ViewModels
                 Birthdate = Birthdate,
                 FavoriteTeam = FavoriteTeam
             };
+
+            var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+            var location = await Geolocation.GetLocationAsync(request);
+            if (location != null)
+            {
+                try
+                {
+                    
+                    newSurvey.Lat = location.Latitude;
+                    newSurvey.Lon = location.Longitude;
+                }
+                catch (Exception)
+                {
+                    newSurvey.Lat = 0;
+                    newSurvey.Lon=0;
+                }
+            }
 
             MessagingCenter.Send(this,Messages.NewSurveyComplete,newSurvey);
         }
